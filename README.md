@@ -1,7 +1,7 @@
 
 # 🐍 Snake.py
 
-A classic Snake game built with **Python**, **Pygame**, and pixel-art graphics. Eat apples to grow longer, increase your score, collect hearts to restore health, and try to beat the local high scores.
+A classic Snake game built with **Python**, **Pygame**, and pixel-art graphics. Eat apples to grow longer, increase your score, collect hearts to restore health, and try to beat high scores.
 
 ## 🎬 Gameplay Preview
 
