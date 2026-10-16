@@ -1,123 +1,129 @@
 # 🐍 Snake.py
 
-Un jeu **Snake développé en Python avec Pygame**, réalisé dans le cadre de mon stage de seconde à la Faculté des sciences de Lille, au laboratoire CRIStAL.
+A **Snake game built with Python and Pygame**, created during my second-year high-school internship at the University of Lille's science faculty, in the CRIStAL laboratory.
 
-Le but est de manger les pommes pour faire grandir le serpent et augmenter son score, tout en évitant les collisions. Le jeu propose un système de points de vie, des cœurs à récupérer et un enregistrement des meilleurs scores.
+Eat apples to make the snake grow and increase your score while avoiding collisions. The game features a health system, collectible hearts, and a local high-score system.
 
-## 🎮 Fonctionnalités
+## 🎬 Gameplay Preview
 
-- **Score** : chaque pomme mangée fait grandir le serpent et augmente le score.
-- **Points de vie (HP)** : une collision avec le bord du terrain ou avec le corps du serpent fait perdre un point de vie.
-- **Cœurs à récupérer** : un cœur peut apparaître tous les 10 points. Le récupérer rend un point de vie, sans dépasser le maximum de **3 HP**.
-- **Records** : le meilleur score du joueur et le meilleur score enregistré dans le fichier local sont affichés.
-- **Pseudo** : chaque joueur peut saisir un nom, utilisé pour retrouver son record personnel.
-- **Vitesse progressive** : le serpent accélère au fur et à mesure qu'il grandit.
-- **Graphismes pixel art** : le serpent, la pomme et les cœurs sont dessinés dans un style rétro.
+[▶ Watch the gameplay preview](preview.mov)
 
-Les records sont stockés localement dans `assets/records.xlsx` : ils ne sont pas synchronisés en ligne entre les différents utilisateurs ou ordinateurs.
+Place `preview.mov` in the repository root, next to this `README.md`, for the link above to work.
 
-## ⌨️ Commandes
+## 🎮 Features
 
-| Touche | Action |
+- **Score:** each apple eaten makes the snake grow and increases your score.
+- **Health points (HP):** hitting the edge of the play area or the snake's own body costs one health point.
+- **Collectible hearts:** a heart can appear every 10 points. Collecting it restores one health point, up to a maximum of **3 HP**.
+- **High scores:** the game displays your personal best and the highest score recorded locally.
+- **Player name:** enter a username to keep track of your personal best.
+- **Increasing speed:** the snake gets faster as it grows.
+- **Pixel-art graphics:** the snake, apple, and hearts are drawn in a retro pixel-art style.
+
+Scores are stored locally in `assets/records.xlsx`. They are **not synced online** between different users or computers.
+
+## ⌨️ Controls
+
+| Key | Action |
 | --- | --- |
-| `Z` / `Q` / `S` / `D` | Déplacer le serpent vers le haut, la gauche, le bas ou la droite |
-| `↑` / `←` / `↓` / `→` | Déplacer le serpent avec les flèches directionnelles |
-| `Entrée` | Démarrer depuis le menu ou relancer une partie après un Game Over |
-| `Échap` | Depuis le menu, modifier le pseudo ; pendant la saisie du pseudo ou depuis l’écran de Game Over, quitter le jeu |
-| `Retour arrière` | Effacer le dernier caractère du pseudo pendant sa saisie |
-| Clic gauche | Cliquer sur le bouton **START** du menu |
+| `Z` / `Q` / `S` / `D` | Move up, left, down, or right |
+| `↑` / `←` / `↓` / `→` | Move using the arrow keys |
+| `Enter` | Start the game from the menu or restart after Game Over |
+| `Esc` | In the menu, change the username; while entering a username or on the Game Over screen, quit the game |
+| `Backspace` | Delete the last character while entering your username |
+| Left mouse click | Click the **START** button in the menu |
 
-Le serpent ne peut pas faire demi-tour directement sur lui-même.
+The snake cannot immediately reverse direction and move directly back into itself.
 
-## 🧰 Installation avec Visual Studio Code
+## 🧰 Installation with Visual Studio Code
 
-Ces instructions sont prévues pour **Windows**, avec Python et Visual Studio Code installés.
+These instructions are for **Windows**, with Python and Visual Studio Code installed.
 
-### 1. Récupérer le projet
+### 1. Get the project
 
-Clone le dépôt GitHub, ou télécharge-le puis ouvre son dossier dans Visual Studio Code.
+Clone the GitHub repository, or download it and open its folder in Visual Studio Code.
 
-Pour cloner le dépôt depuis le terminal de VS Code :
+To clone it from the VS Code terminal:
 
 ```powershell
-git clone <URL_DU_DEPOT>
-cd <NOM_DU_DEPOT>
+git clone <REPOSITORY_URL>
+cd <REPOSITORY_FOLDER>
 ```
 
-Remplace `<URL_DU_DEPOT>` et `<NOM_DU_DEPOT>` par les informations de ton dépôt.
+Replace `<REPOSITORY_URL>` and `<REPOSITORY_FOLDER>` with your repository's URL and folder name.
 
-### 2. Créer l'environnement virtuel `.venv`
+### 2. Create the `.venv` virtual environment
 
-Dans VS Code, ouvre **Terminal → Nouveau terminal**, puis exécute :
+In VS Code, open **Terminal → New Terminal**, then run:
 
 ```powershell
 py -3.12 -m venv .venv
 ```
 
-Cette commande crée un environnement Python isolé dans le dossier `.venv` du projet. Python **3.10 ou plus récent** est nécessaire, car le code utilise notamment `match/case`. Si la commande `py -3.12` ne fonctionne pas, utilise une autre version compatible de Python installée sur ton ordinateur, par exemple `py -3.13`.
+This creates an isolated Python environment in the project's `.venv` folder. The code requires **Python 3.10 or newer**, because it uses features such as `match/case`. If `py -3.12` is not available, use another compatible Python version installed on your computer, such as `py -3.13`.
 
-### 3. Activer l'environnement virtuel
+### 3. Activate the virtual environment
 
-Dans le terminal PowerShell de VS Code :
+In the VS Code PowerShell terminal, run:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-Si l'activation est bloquée par la politique d'exécution PowerShell, tu peux installer les dépendances et lancer le jeu avec le chemin direct vers Python de `.venv` indiqué plus bas, sans activer l'environnement.
+If PowerShell blocks activation because of its execution policy, you can install the dependencies and run the game using the direct path to `.venv`'s Python interpreter, as shown below, without activating the environment.
 
-### 4. Installer les bibliothèques nécessaires
+### 4. Install the required libraries
 
-Une fois `.venv` activé, exécute :
+With `.venv` activated, run:
 
 ```powershell
 python -m pip install --upgrade pip
 python -m pip install pygame openpyxl
 ```
 
-Le projet utilise :
+The project uses:
 
-- **Pygame** pour la fenêtre, les événements clavier et l'affichage du jeu ;
-- **openpyxl** pour lire et enregistrer les records dans le fichier Excel.
+- **Pygame** for the game window, keyboard input, and graphics;
+- **openpyxl** to read and save high scores in the Excel file.
 
-### 5. Sélectionner l'interpréteur Python dans VS Code
+### 5. Select the Python interpreter in VS Code
 
-1. Ouvre la palette de commandes avec `Ctrl` + `Maj` + `P`.
-2. Recherche **Python: Select Interpreter**.
-3. Sélectionne l'interpréteur situé dans `.venv`, généralement `.venv\Scripts\python.exe`.
+1. Open the Command Palette with `Ctrl` + `Shift` + `P`.
+2. Search for **Python: Select Interpreter**.
+3. Select the interpreter inside `.venv`, usually `.venv\Scripts\python.exe`.
 
-### 6. Lancer le jeu
+### 6. Run the game
 
-Dans le terminal, lance le fichier Python qui contient le jeu. Par exemple, si le fichier s'appelle `main.py` :
+In the terminal, run the Python file containing the game. For example, if the file is named `main.py`:
 
 ```powershell
 python main.py
 ```
 
-Adapte `main.py` au nom réel du fichier dans le dépôt.
+Replace `main.py` with the actual filename in your repository.
 
-Si tu n'as pas activé l'environnement virtuel, utilise directement son interpréteur :
+If you have not activated the virtual environment, run it using its Python interpreter directly:
 
 ```powershell
 .\.venv\Scripts\python.exe main.py
 ```
 
-Là encore, remplace `main.py` par le nom du fichier concerné.
+Again, replace `main.py` with the name of your Python file.
 
-## 📁 Fichiers nécessaires
+## 📁 Required files
 
-Le dossier `assets` doit rester à côté du fichier Python. Il contient notamment :
+Keep the `assets` folder alongside the Python file. It should contain at least:
 
 ```text
 assets/
-├── font.otf       # Police utilisée dans le jeu
-└── records.xlsx   # Records des joueurs
+├── font.otf       # Font used by the game
+└── records.xlsx   # Player high scores
 ```
 
-Le jeu utilise des chemins relatifs à son propre fichier pour retrouver ces ressources. Conserve donc cette organisation lorsque tu lances le programme.
+The game uses paths relative to its Python file to locate these resources, so keep this folder structure intact when running the program.
 
-Si `records.xlsx` n'existe pas au démarrage, le jeu peut créer le fichier lors du chargement du record d'un joueur. Garde toutefois le dossier `assets` présent, car il contient aussi la police du jeu.
+If `records.xlsx` does not exist, the game can create it when loading a player's record. However, keep the `assets` folder in place because it also contains the game's font.
 
-## 🕹️ Objectif
+## 🕹️ Objective
 
-Obtiens le meilleur score possible, récupère les cœurs pour conserver tes points de vie et essaie de battre ton record personnel !
+Get the highest score you can, collect hearts to maintain your health, and try to beat your personal best!
