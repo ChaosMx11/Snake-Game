@@ -7,8 +7,6 @@ A classic Snake game built with **Python**, **Pygame**, and pixel-art graphics. 
 
 https://github.com/user-attachments/assets/29cb55c2-c8ce-4968-ae3f-4dcbae7ad498
 
-[▶ Watch the gameplay preview](preview.mov)
-
 ## 🎮 Features
 
 - **Score:** each apple increases your score and makes the snake longer.
