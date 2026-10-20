@@ -142,7 +142,6 @@ def dessine_bouton_pixel(x, y, largeur, hauteur, couleur, fenetre):
     for j in range(rows):
         for i in range(cols):
 
-            # coins arrondis
             if (i < 2 and j < 2) or (i > cols - 3 and j < 2) or \
                (i < 2 and j > rows - 3) or (i > cols - 3 and j > rows - 3):
                 continue
@@ -160,12 +159,10 @@ def dessine_bouton_pixel(x, y, largeur, hauteur, couleur, fenetre):
                 (i * pixel, j * pixel, pixel, pixel)
             )
 
-    # 🎯 coins renforcés (PIXEL FINAL)
-    # 🎯 coins internes (style pixel 8-bit propre)
-    pygame.draw.rect(surface, bord, (1 * pixel, 1 * pixel, pixel, pixel))  # haut gauche
-    pygame.draw.rect(surface, bord, ((cols - 2) * pixel, 1 * pixel, pixel, pixel))  # haut droite
-    pygame.draw.rect(surface, bord, (1 * pixel, (rows - 2) * pixel, pixel, pixel))  # bas gauche
-    pygame.draw.rect(surface, bord, ((cols - 2) * pixel, (rows - 2) * pixel, pixel, pixel))  # bas droite
+    pygame.draw.rect(surface, bord, (1 * pixel, 1 * pixel, pixel, pixel))
+    pygame.draw.rect(surface, bord, ((cols - 2) * pixel, 1 * pixel, pixel, pixel))
+    pygame.draw.rect(surface, bord, (1 * pixel, (rows - 2) * pixel, pixel, pixel))
+    pygame.draw.rect(surface, bord, ((cols - 2) * pixel, (rows - 2) * pixel, pixel, pixel))
 
     fenetre.blit(surface, (x, y))
     
@@ -398,7 +395,6 @@ def snake_turn(x, y, dir_before, dir_after, fenetre):
 
     pixel_size = taille // len(turn)
 
-    # Dessin du virage
     for j, ligne in enumerate(turn):
         for i, pixel in enumerate(ligne):
             if pixel == 0:
@@ -410,7 +406,6 @@ def snake_turn(x, y, dir_before, dir_after, fenetre):
                 (i * pixel_size, j * pixel_size, pixel_size, pixel_size)
             )
 
-    # Rotation UNE FOIS après le dessin
     if dir_before == "up" and dir_after == "right":
         surface = pygame.transform.rotate(surface, 0)
 
@@ -442,7 +437,6 @@ def snake_turn_otherside(x, y, dir_before, dir_after, fenetre):
 
     pixel_size = taille // len(turn_otherside)
 
-    # Dessin du virage
     for j, ligne in enumerate(turn_otherside):
         for i, pixel in enumerate(ligne):
             if pixel == 0:
@@ -522,11 +516,9 @@ def dessine_plusieurs_carres(positions, direction, fenetre):
         else:
             snake_body(x, y, fenetre)
 
-    # tête
     x, y = positions[-1]
     snake_head(x, y, direction, fenetre)
 
-    # queue
     snake_tail(positions, fenetre)
     
 def snake_tail(positions, fenetre):
@@ -808,7 +800,6 @@ def menu_accueil(fenetre, nom_joueur, meilleur_score, record_global):
         afficher_message_best("Best      : " + str(record_global), VERT4, fenetre)
         afficher_nom(nom_joueur, NOIR, fenetre)
 
-        # Titre
         titre = titre_font.render("SNAKE.PY", True, VERT3)
         fenetre.blit(
             titre,
@@ -818,7 +809,6 @@ def menu_accueil(fenetre, nom_joueur, meilleur_score, record_global):
             )
         )
 
-        # Bouton
         souris = pygame.mouse.get_pos()
 
         if bouton_rect.collidepoint(souris):
@@ -880,7 +870,6 @@ def demander_nom_joueur(fenetre):
     while saisie:
         fenetre.fill(couleur_fond)
 
-        # Titre
         titre = titre_font.render("Enter your username", True, VERT3)
         fenetre.blit(
             titre,
@@ -890,7 +879,6 @@ def demander_nom_joueur(fenetre):
             )
         )
 
-        # Zone de texte
         pygame.draw.rect(
             fenetre,
             VERT,
@@ -910,20 +898,16 @@ def demander_nom_joueur(fenetre):
 
             if event.type == pygame.KEYDOWN:
 
-                # Valider avec Entrée
                 if event.key == pygame.K_RETURN and nom != "":
                     saisie = False
 
-                # Supprimer une lettre
                 elif event.key == pygame.K_BACKSPACE:
                     nom = nom[:-1]
 
-                # Quitter avec Échap
                 elif event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     quit()
 
-                # Ajouter les caractères
                 else:
                     if len(nom) < 12:
                         nom += event.unicode
