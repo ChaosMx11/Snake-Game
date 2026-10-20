@@ -3,7 +3,6 @@ import pygame
 import random
 import openpyxl
 
-
 def charger_record_joueur(nom_joueur):
     BASE_DIR = os.path.dirname(__file__)
     chemin_excel = os.path.join(BASE_DIR, "assets", "records.xlsx")
